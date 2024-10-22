@@ -1,3 +1,4 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path'); // Импортируем модуль "path" для работы с путями файлов
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -13,18 +14,55 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/, // Регулярное выражение для обработки файлов с расширением .css
-                use: ['style-loader', 'css-loader'], // Загрузчики, используемые для обработки CSS-файлов
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[path][name].[ext]', // Сохранить структуру папок
+                            outputPath: 'assets/icons/', // Путь для выходных файлов в dist
+                        },
+                    },
+                ],
             },
         ],
     },
 
     plugins: [
+
         new HtmlWebpackPlugin({
             template: './src/index.html',
             inject: true,
             chunks: ['index'],
             filename: 'index.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/about.html',
+            inject: true,
+            chunks: ['about'],
+            filename: 'about.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/projects.html',
+            inject: true,
+            chunks: ['projects'],
+            filename: 'projects.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/tasks.html',
+            inject: true,
+            chunks: ['tasks'],
+            filename: 'tasks.html'
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'src/assets', to: 'assets' },
+                { from: 'src/scripts', to: 'scripts' },
+            ],
         }),
     ],
 
