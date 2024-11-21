@@ -1,3 +1,4 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path'); // Импортируем модуль "path" для работы с путями файлов
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -25,6 +26,30 @@ module.exports = {
             inject: true,
             chunks: ['index'],
             filename: 'index.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/about.html',
+            inject: true,
+            chunks: ['about'],
+            filename: 'about.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/projects.html',
+            inject: true,
+            chunks: ['projects'],
+            filename: 'projects.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/tasks.html',
+            inject: true,
+            chunks: ['tasks'],
+            filename: 'tasks.html'
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'src/assets', to: 'assets' },
+                { from: 'src/scripts', to: 'scripts' },
+            ],
         }),
     ],
 

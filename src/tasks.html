@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATL</title>
+
+    <link rel="icon" href="./assets/icons/сokkie.jpg" type="image/x-icon">
+</head>
+
+<body>
+    <div class="preloader">
+        <div>
+            <img src="./assets/icons/duck.gif" alt="duck">
+            <p>Загрузка...</p>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="logo">
+            <img src="./assets/icons/og-image.webp" alt="cat">
+            <p>ATL</p>
+        </div>
+        <div class="burger-wrap">
+            <div class="burger-icon" id="burger-menu" onclick="toggleBurgerMenu()">
+                <img src="./assets/icons/menu(3).svg" alt="sidebar-menu">
+            </div>
+            <nav class="main-nav" id="header-nav">
+                <a href="index.html">Main</a>
+                <a href="projects.html">Projects</a>
+                <a href="tasks.html">Tasks</a>
+                <a href="about.html">About</a>
+            </nav>
+        </div>
+        <div class="dropdown-nav" id="drop-nav">
+            <a href="index.html">Main</a>
+            <a href="projects.html">Projects</a>
+            <a href="tasks.html">Tasks</a>
+            <a href="about.html">About</a>
+        </div>
+    </header>
+
+    <div class="table-wrap">
+        <table id="main-table">
+            <tr class="table-header">
+                <td class="table-tasks-col">
+                    <div>Tasks</div>
+                </td>
+                <td class="table-work-col">
+                    <div>In work</div>
+                </td>
+                <td class="table-complete-col">
+                    <div>Completed</div>
+                </td>
+            </tr>
+            <tr class="create-task">
+                <td>
+                    <div>
+                        <input type="text" id="addTaskField-tasks" placeholder="Add task" autocomplete="off">
+                        <svg class="add-task-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+                        </svg>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input type="text" id="addTaskField-work" placeholder="Add task" autocomplete="off">
+                        <svg class="add-task-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+                        </svg>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input type="text" id="addTaskField-complete" placeholder="Add task" autocomplete="off">
+                        <svg class="add-task-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+                        </svg>
+                    </div>
+                </td>
+            </tr>
+            <tr class="note-row">
+                <td>
+                    <ul class="notes" id="note-list"></ul>
+                </td>
+                <td>
+                    <ul class="notes" id="note-list"></ul>
+                </td>
+                <td>
+                    <ul class="notes" id="note-list"></ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <dialog id="taskDialog">
+        <form id="addTaskForm" method="dialog">
+            <input type="text" id="taskName" name="taskName" autoFocus placeholder="Введите название" required
+                autocomplete="off">
+            <div class="buttons">
+                <button type="submit" id="add-task-btn">
+                    <img src="./assets/icons/plus.svg" alt="add_icon" id="svg" />
+                    Добавить задачу
+                </button>
+                <button id="closeDialog" type="button">Закрыть</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script>
+        window.onload = function () {
+            const preloader = document.querySelector('.preloader');
+            preloader.classList.add('loaded_hiding');
+
+            setTimeout(function () {
+                preloader.classList.add('loaded');
+            }, 300)
+        }
+    </script>
+
+    <script src="./scripts/load-notes.js"></script>
+    <script src="./scripts/edit-notes.js"></script>
+    <script src="./scripts/burger.js"></script>
+    <script src="./scripts/modal.js"></script>
+    <script src="bundle.js"></script>
+</body>
+
+</html>
